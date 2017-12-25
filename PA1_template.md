@@ -7,10 +7,21 @@ output:
 
 
 ## Loading and preprocessing the data
-```{r read_data, echo=TRUE}
+
+```r
 setwd("C:/Users/SamJacobJulian/Desktop/Rstd")
 data <- read.csv(file = "./RepData_PeerAssessment1/activity/activity.csv", header = TRUE, comment.char = "")
 head(data)
+```
+
+```
+##   steps       date interval
+## 1    NA 2012-10-01        0
+## 2    NA 2012-10-01        5
+## 3    NA 2012-10-01       10
+## 4    NA 2012-10-01       15
+## 5    NA 2012-10-01       20
+## 6    NA 2012-10-01       25
 ```
 
 
