@@ -15,8 +15,10 @@ head(data)
 
 
 ## What is mean total number of steps taken per day?
-
-
+```{r mean_steps, echo=TRUE}
+library(dplyr)
+d_mean <- data %>% group_by(date) %>% summarise(tot_steps = sum(steps))
+```
 
 ## What is the average daily activity pattern?
 
