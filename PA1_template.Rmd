@@ -22,13 +22,19 @@ date_ave_steps <- data %>% group_by(date) %>% summarise_all(funs(sum),na.rm = TR
 hist(date_ave_steps$steps)
 
 mean_steps <- mean(date_ave_steps$steps,na.rm = TRUE)
+
 median_steps <- median(date_ave_steps$steps,na.rm = TRUE)
 ```
 
 
 ## What is the average daily activity pattern?
+interval_ave_steps <- data[,c(1,3)] %>% group_by(interval) %>% summarise_all(funs(mean),na.rm = TRUE)
 
+plot(interval_ave_steps,type="l")
 
+which.max(interval_ave_steps$steps)
+
+interval_ave_steps[104,] #206.1698
 
 ## Imputing missing values
 
