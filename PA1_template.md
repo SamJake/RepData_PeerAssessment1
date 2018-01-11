@@ -38,16 +38,17 @@ library(dplyr)
 ```
 
 ```r
-length(unique(data$date))
+#length(unique(data$date))
+date_ave_steps <- data %>% group_by(date) %>% summarise_all(funs(sum),na.rm = TRUE)
+
+hist(date_ave_steps$steps)
 ```
 
-```
-## [1] 61
-```
+![](PA1_template_files/figure-html/mean_steps-1.png)<!-- -->
 
 ```r
-date_ave_steps <- data %>% group_by(date) %>% summarise_all(funs(mean),na.rm = TRUE)
-ave_steps <- mean(date_ave_steps$steps,na.rm = TRUE)
+mean_steps <- mean(date_ave_steps$steps,na.rm = TRUE)
+median_steps <- median(date_ave_steps$steps,na.rm = TRUE)
 ```
 
 
