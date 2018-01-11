@@ -11,17 +11,6 @@ output:
 ```r
 setwd("C:/Users/SamJacobJulian/Desktop/Rstd")
 data <- read.csv(file = "./RepData_PeerAssessment1/activity/activity.csv", header = TRUE, comment.char = "")
-head(data)
-```
-
-```
-##   steps       date interval
-## 1    NA 2012-10-01        0
-## 2    NA 2012-10-01        5
-## 3    NA 2012-10-01       10
-## 4    NA 2012-10-01       15
-## 5    NA 2012-10-01       20
-## 6    NA 2012-10-01       25
 ```
 
 
@@ -49,8 +38,18 @@ library(dplyr)
 ```
 
 ```r
-d_mean <- data %>% group_by(date) %>% summarise(tot_steps = sum(steps))
+length(unique(data$date))
 ```
+
+```
+## [1] 61
+```
+
+```r
+date_ave_steps <- data %>% group_by(date) %>% summarise_all(funs(mean),na.rm = TRUE)
+ave_steps <- mean(date_ave_steps$steps,na.rm = TRUE)
+```
+
 
 ## What is the average daily activity pattern?
 

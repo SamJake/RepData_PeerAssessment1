@@ -125,15 +125,7 @@ $(document).ready(function () {
 <div id="loading-and-preprocessing-the-data" class="section level2">
 <h2>Loading and preprocessing the data</h2>
 <pre class="r"><code>setwd(&quot;C:/Users/SamJacobJulian/Desktop/Rstd&quot;)
-data &lt;- read.csv(file = &quot;./RepData_PeerAssessment1/activity/activity.csv&quot;, header = TRUE, comment.char = &quot;&quot;)
-head(data)</code></pre>
-<pre><code>##   steps       date interval
-## 1    NA 2012-10-01        0
-## 2    NA 2012-10-01        5
-## 3    NA 2012-10-01       10
-## 4    NA 2012-10-01       15
-## 5    NA 2012-10-01       20
-## 6    NA 2012-10-01       25</code></pre>
+data &lt;- read.csv(file = &quot;./RepData_PeerAssessment1/activity/activity.csv&quot;, header = TRUE, comment.char = &quot;&quot;)</code></pre>
 </div>
 <div id="what-is-mean-total-number-of-steps-taken-per-day" class="section level2">
 <h2>What is mean total number of steps taken per day?</h2>
@@ -146,7 +138,10 @@ head(data)</code></pre>
 <pre><code>## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>d_mean &lt;- data %&gt;% group_by(date) %&gt;% summarise(tot_steps = sum(steps))</code></pre>
+<pre class="r"><code>length(unique(data$date))</code></pre>
+<pre><code>## [1] 61</code></pre>
+<pre class="r"><code>date_ave_steps &lt;- data %&gt;% group_by(date) %&gt;% summarise_all(funs(mean),na.rm = TRUE)
+ave_steps &lt;- mean(date_ave_steps$steps,na.rm = TRUE)</code></pre>
 </div>
 <div id="what-is-the-average-daily-activity-pattern" class="section level2">
 <h2>What is the average daily activity pattern?</h2>

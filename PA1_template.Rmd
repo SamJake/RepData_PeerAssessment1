@@ -10,15 +10,17 @@ output:
 ```{r read_data, echo=TRUE}
 setwd("C:/Users/SamJacobJulian/Desktop/Rstd")
 data <- read.csv(file = "./RepData_PeerAssessment1/activity/activity.csv", header = TRUE, comment.char = "")
-head(data)
 ```
 
 
 ## What is mean total number of steps taken per day?
 ```{r mean_steps, echo=TRUE}
 library(dplyr)
-d_mean <- data %>% group_by(date) %>% summarise(tot_steps = sum(steps))
+#length(unique(data$date))
+date_ave_steps <- data %>% group_by(date) %>% summarise_all(funs(mean),na.rm = TRUE)
+ave_steps <- mean(date_ave_steps$steps,na.rm = TRUE)
 ```
+
 
 ## What is the average daily activity pattern?
 
