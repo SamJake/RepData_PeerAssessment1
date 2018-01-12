@@ -143,4 +143,13 @@ wk_day_fn <- function(day)
 }
 
 days2 <- sapply(days,wk_day_fn)
+data_new2 <- data_new %>% mutate(day_type = days2)
+data_new2$day_type <- as.factor(data_new2$day_type)
+
+library(ggplot2)
+data_new2_mean <- aggregate(steps~interval+day_type, data=data_new2, mean)
+g <- ggplot(data_new2_mean,aes(interval,steps))+geom_line(size=2,aes(color=day_type))+facet_grid(day_type~.)+ggtitle("Activity difference: Weekdays vs Weekends") + xlab("Interval")+ ylab("Steps")
+g
 ```
+
+![](PA1_template_files/figure-html/diff_activity_patterns-1.png)<!-- -->
